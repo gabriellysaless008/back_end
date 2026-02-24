@@ -56,7 +56,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ){
         <br><br>
         <label>Idade:</label>
         <input type="number" id="idade" name="idade" required>
-        <input type="submit" value="Cadastrar">
+        <button type="submit">Cadastrar</button>
     </form>
 </body>
 </html>
