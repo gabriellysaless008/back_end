@@ -1,25 +1,39 @@
 <?php
 
-require_once '';
+include_once 'config.php';
+
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+        
+        $nome = trim( $_POST['nome'] );
+        $idade = $_POST['idade'];
+
+            if( empty( $nome ) || empty ( $idade ) || !is_numeric( $idade ) ){
+                echo "Dados inválidos";
+                exit;
+
+            }else{
+                $idade = (int)$idade;
+
+
+                $stmt = $conexao->prepare( "INSERT INTO usuarios ( nome, idade ) VALUES (?,?)" );
+                $stmt->bind_param("si", $nome, $idade);
+
+                    if( $stmt->execute( ) ){
+                        echo "Cadastro realizado com sucesso!";
+
+                    }else{
+                        echo "Erro ao cadastrar: " . $stmt->error;
+                    }
+
+                    $stmt->close();
+            }
+                
+}else{
+        echo "Erro ao cadastrar";
+}
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
